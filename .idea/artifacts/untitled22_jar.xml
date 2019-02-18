@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="untitled22:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/untitled22_jar</output-path>
+    <root id="root">
+      <element id="archive" name="untitled22.jar">
+        <element id="module-output" name="untitled22" />
+      </element>
+      <element id="library" level="project" name="mariadb-java-client-2.4.0" />
+    </root>
+  </artifact>
+</component>

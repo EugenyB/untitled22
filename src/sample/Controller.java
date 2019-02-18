@@ -25,8 +25,6 @@ public class Controller {
     @FXML private TableColumn<Person, Integer> ageColumn;
     @FXML private TableColumn<Person, Double> salaryColumn;
 
-    boolean edit = false;
-
     private MyModel model;
 
     @FXML
@@ -41,7 +39,7 @@ public class Controller {
         fillData();
 
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                showSelectedItem(newValue);
+            if (newValue!=null) showSelectedItem(newValue);
         });
 
     }
@@ -56,6 +54,7 @@ public class Controller {
 
     private void fillData() {
         table.setItems(FXCollections.observableArrayList(model.findAllPeople()));
+        table.refresh();
     }
 
     public void addPerson() {
@@ -84,9 +83,7 @@ public class Controller {
             person.setAge(Integer.parseInt(ageField.getText()));
             person.setSalary(Double.parseDouble(salaryField.getText()));
             model.editPerson(person);
-            edit = false;
             fillData();
-            edit = true;
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -116,11 +113,8 @@ public class Controller {
             nameField.clear();
             ageField.clear();
             salaryField.clear();
-            edit = false;
-
         } else {
             addOrEditButton.setText("Изменить");
-            edit = true;
         }
     }
 
